@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>يا سلمى.. هدايا قلبي ليكي في الفالنتاين 💝</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #ffdde1);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3.5rem;
+            color: #ff4d94;
+            text-shadow: 0 0 15px #fff;
+            margin: 20px;
+            animation: glow 2.5s infinite alternate;
+        }
+        p.intro {
+            font-size: 1.8rem;
+            margin: 10px 20px;
+            max-width: 90%;
+        }
+        .gift-box {
+            width: 320px;
+            min-height: 220px;
+            background: #fff;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            margin: 20px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        .gift-box.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .gift-number {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #ff3366;
+            margin-bottom: 10px;
+        }
+        .gift-text {
+            font-size: 1.7rem;
+            color: #333;
+            line-height: 1.4;
+        }
+        button {
+            margin-top: 40px;
+            padding: 18px 60px;
+            font-size: 1.8rem;
+            background: #ff4d94;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255,77,148,0.4);
+            transition: all 0.3s;
+        }
+        button:hover {
+            transform: scale(1.1);
+            background: #ff3366;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ff69b4; }
+            to { text-shadow: 0 0 30px #ff1493; }
+        }
+        .heart {
+            position: absolute;
+            font-size: 2.5rem;
+            animation: fall 7s linear infinite;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-120%) rotate(0deg); }
+            100% { transform: translateY(120vh) rotate(720deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>يا سلمى يا قلبي.. هدايا الفالنتاين مني ليكي 💖</h1>
+    <p class="intro">اضغطي الزر عشان تشوفي الهدايا واحدة واحدة.. الثالثة هتذوبك 🥹❤️</p>
+
+    <div class="gift-box" id="gift1">
+        <div class="gift-number">1</div>
+        <div class="gift-text">إني بحبك أوي.. بحب ضحكتك، صوتك، حتى لما تزعلي بتكوني أحلى بنت في الدنيا</div>
+    </div>
+
+    <div class="gift-box" id="gift2" style="display:none;">
+        <div class="gift-number">2</div>
+        <div class="gift-text">وعد مني: هفضل أدور عليكي في كل لحظة، أفكر فيكي كل ثانية، وأحلم بيكي كل ليلة لحد ما أشوفك</div>
+    </div>
+
+    <div class="gift-box" id="gift3" style="display:none;">
+        <div class="gift-number">3</div>
+        <div class="gift-text">أغلى هدية: قلبي كله ملكك يا سلمى.. أنتِ اللي هتكملي حياتي، وأنا مستني اليوم اللي نبقى مع بعض على طول، بحبك بحجم الكون كله 💍🥹❤️</div>
+    </div>
+
+    <button id="revealBtn">كشف الهدية الجاية →</button>
+
+    <script>
+        let step = 0;
+        const gifts = document.querySelectorAll('.gift-box');
+        const btn = document.getElementById('revealBtn');
+
+        btn.addEventListener('click', () => {
+            if (step < gifts.length - 1) {
+                step++;
+                gifts[step].style.display = 'flex';
+                setTimeout(() => gifts[step].classList.add('visible'), 100);
+                if (step === gifts.length - 1) {
+                    btn.textContent = "خلصت الهدايا.. بحبك أوي يا سلمى! 💕";
+                    btn.disabled = true;
+                }
+            }
+        });
+
+        // قلوب متساقطة
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 10000);
+        }
+        setInterval(createHeart, 600);
+
+        // ابدأ بالأولى ظاهرة
+        gifts[0].style.display = 'flex';
+        setTimeout(() => gifts[0].classList.add('visible'), 100);
+    </script>
+</body>
+</html>
